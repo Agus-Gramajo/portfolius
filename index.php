@@ -247,22 +247,22 @@
     <div class="container">
       <ul class="list-inline mb-5">
         <li class="list-inline-item">
-          <a class="social-link rounded-circle text-white mr-3" href="#!">
+          <a class="social-link rounded-circle text-white mr-3" href="https://www.facebook.com/agus.tinita.39/" target="_blank">
             <i class="icon-social-facebook"></i>
           </a>
         </li>
         <li class="list-inline-item">
-          <a class="social-link rounded-circle text-white mr-3" href="#!">
-            <i class="icon-social-twitter"></i>
+          <a class="social-link rounded-circle text-white mr-3" href="linkedin.com/in/agustina-gramajo-92840a5b" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
           </a>
         </li>
         <li class="list-inline-item">
-          <a class="social-link rounded-circle text-white" href="#!">
+          <a class="social-link rounded-circle text-white" href="https://github.com/Agus-Gramajo" target="_blank">
             <i class="icon-social-github"></i>
           </a>
         </li>
       </ul>
-      <p class="text-muted small mb-0">Copyright &copy; Your Website 2020</p>
+      <p class="text-muted small mb-0">Copyright &copy; Agustina Gramajo 2021</p>
     </div>
   </footer>
 
@@ -344,7 +344,8 @@
                 <input type="file" name="file" id="submitImg1" accept="image/jpeg,image/jpg,.pdf">
               </div>
               <div>
-                <textarea id="projectInfo" name="projectInfo" rows="4" placeholder="Contanos sobre tu proyecto...">
+                <!--Aca rompe-->
+                <!-- <textarea id="projectInfo" name="projectInfo" rows="4" placeholder="Contanos sobre tu proyecto..."> -->
               </div>
 
               <div class="my-4">
@@ -360,11 +361,11 @@
     </div>
   </div>
 
-  
 
 
-  
-  
+
+
+
   <script>
     $(document).ready(function() {
       $('#loginModal').modal('show');
