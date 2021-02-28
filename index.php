@@ -161,8 +161,10 @@ require_once('data.php');
           <a class="portfolio-item js-scroll-trigger" href="#" data-toggle="modal" data-target="#projectModal">
             <div class="caption">
               <div class="caption-content">
-                <div class="h2">Titulo del proyecto</div>
-                <p class="mb-0">Descripcion del proyecto</p>
+                <div class="h2">
+                  <h4><?php echo $_POST['name1'] ?></h4>
+                </div>
+                <p class="mb-0"><?php $_POST['description'] ?></p>
               </div>
             </div>
             <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
@@ -339,7 +341,7 @@ require_once('data.php');
             <h4>Subí tu proyecto</h4>
           </div>
           <div class="d-flex flex-column text-center">
-            <form>
+            <form action="upload_project.php" method="post">
               <div class="form-group">
                 <input type="email" class="form-control" id="email2" placeholder="Tu dirección de mail">
               </div>
@@ -404,11 +406,11 @@ require_once('data.php');
         </div>
         <div class="modal-body">
           <div class="form-title text-center">
-            <h4>Titulo del proyecto</h4>
+            <h4><?php echo $_POST['name1'] ?></h4>
           </div>
           <div class="d-flex flex-column text-center">
             <div>
-              <p>Descripcion del proyecto</p>
+              <p><?php echo $_POST['description'] ?></p>
               <div class="mb-4">
                 <a href="#" class="badge badge-primary">HTML</a>
                 <a href="#" class="badge badge-primary">CSS</a>
@@ -421,15 +423,15 @@ require_once('data.php');
             <div class="text-center text-muted delimiter">¿Te gustó mi trabajo? Contactame
             </div>
             <div class="d-flex justify-content-center social-buttons">
-              <button type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="GitHub">
+              <a type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="GitHub" href="<?php echo $_POST['github'] ?>" target="_blank">
                 <i class="icon-social-github"></i>
-              </button>
-              <button type="button" class="badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Mail">
+              </a>
+              <a type="button" class="badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Mail" href="mailto:<?php echo $_POST['email2'] ?>" target="_blank">
                 <i class="fas fa-envelope"></i>
-              </button>
-              <button type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
+              </a>
+              <a type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin" href="<?php echo $_POST['linkedin'] ?>" target="_blank">
                 <i class="fab fa-linkedin"></i>
-              </button>
+              </a>
             </div>
           </div>
         </div>
