@@ -1,6 +1,8 @@
 <?php session_start();
 
 require_once('data.php');
+require_once('connect_db.php');
+require_once('upload_project.php');
 
 ?>
 
@@ -146,6 +148,39 @@ require_once('data.php');
         next website!
       </h2>
       <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/theme/stylish-portfolio/">Download Now!</a>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td>Nombre</td>
+          <td>Descripcion del proyecto</td>
+          <td>Imagen</td>
+          <td>HTML</td>
+          <td>GitHub</td>
+          <td>Email</td>
+          <td>Linkedin</td>
+        </tr>
+        <?php
+
+        $proyecto = new methods();
+        $sql = "SELECT name1, submitImg1, html, github, email2,linkedin from projectdb";
+        $data = $proyecto->mostrarDatos($sql);
+
+        foreach ($data as $key) {
+        ?>
+          <tr>
+            <td><?php echo $key['name1'] ?></td>
+
+            <td><?php echo $key['submitImg1'] ?></td>
+            <td><?php echo $key['html'] ?></td>
+            <td><?php echo $key['github'] ?></td>
+            <td><?php echo $key['email2'] ?></td>
+            <td><?php echo $key['linkedin'] ?></td>
+          </tr>
+        <?php
+        }
+        ?>
+      </table>
     </div>
   </section>
 
