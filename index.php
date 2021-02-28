@@ -1,4 +1,8 @@
-<?php require('session.php'); ?>
+<?php session_start();
+
+require_once('data.php');
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -154,11 +158,11 @@
       </div>
       <div class="row no-gutters">
         <div class="col-lg-6">
-          <a class="portfolio-item" href="#!">
+          <a class="portfolio-item js-scroll-trigger" href="#" data-toggle="modal" data-target="#projectModal">
             <div class="caption">
               <div class="caption-content">
-                <div class="h2">Stationary</div>
-                <p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+                <div class="h2">Titulo del proyecto</div>
+                <p class="mb-0">Descripcion del proyecto</p>
               </div>
             </div>
             <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
@@ -271,6 +275,8 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  <!-- Modales -->
+
   <!--Log in modal-->
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -323,31 +329,57 @@
   <div class="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header border-bottom-0">
+        <div class="modal-header border-bottom-0 pb-0">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="form-title text-center">
+          <div class="form-title text-center mb-4">
             <h4>Subí tu proyecto</h4>
           </div>
           <div class="d-flex flex-column text-center">
             <form>
               <div class="form-group">
-                <input type="email" class="form-control" id="email2" placeholder="Your email address...">
+                <input type="email" class="form-control" id="email2" placeholder="Tu dirección de mail">
               </div>
               <div class="form-group">
-                <input type="name" class="form-control" id="name1" placeholder="Your name...">
+                <input type="name" class="form-control" id="name1" placeholder="Tu nombre">
+              </div>
+              <div class="form-group">
+                <input type="url" class="form-control" id="linkedin" placeholder="URL Likedin">
+              </div>
+              <div class="form-group">
+                <input type="url" class="form-control" id="github" placeholder="URL gitHub">
+              </div>
+              <div>
+                <textarea class="w-100" name="description" id="description" rows="5" placeholder="Contanos un poco sobre tu proyecto..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <p>¿Qué tecnologias utilizaste?</p>
+                <div class="d-flex justify-content-around">
+                  <div>
+                    <input type="checkbox" id="html" name="html" value="html">
+                    <label for="html"> HTML</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="css" name="css" value="css">
+                    <label for="css"> CSS</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="php" name="php" value="php">
+                    <label for="php"> PHP</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="js" name="js" value="js">
+                    <label for="js"> JavaScript</label>
+                  </div>
+                </div>
               </div>
               <div>
                 <input type="file" name="file" id="submitImg1" accept="image/jpeg,image/jpg,.pdf">
               </div>
-              <div>
-                <!--Aca rompe-->
-                <!-- <textarea id="projectInfo" name="projectInfo" rows="4" placeholder="Contanos sobre tu proyecto..."> -->
-              </div>
-
               <div class="my-4">
                 <button type="button" class="col-2  btn btn-info btn-round">Cargar</button>
               </div>
@@ -361,6 +393,53 @@
     </div>
   </div>
 
+  <!--Project modal-->
+  <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0 pb-0">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-title text-center">
+            <h4>Titulo del proyecto</h4>
+          </div>
+          <div class="d-flex flex-column text-center">
+            <div>
+              <p>Descripcion del proyecto</p>
+              <div class="mb-4">
+                <a href="#" class="badge badge-primary">HTML</a>
+                <a href="#" class="badge badge-primary">CSS</a>
+                <a href="#" class="badge badge-primary">PHP</a>
+              </div>
+            </div>
+            <div class="mb-4">
+              <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
+            </div>
+            <div class="text-center text-muted delimiter">¿Te gustó mi trabajo? Contactame
+            </div>
+            <div class="d-flex justify-content-center social-buttons">
+              <button type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="GitHub">
+                <i class="icon-social-github"></i>
+              </button>
+              <button type="button" class="badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Mail">
+                <i class="fas fa-envelope"></i>
+              </button>
+              <button type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
+                <i class="fab fa-linkedin"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- /Modales -->
 
 
 
