@@ -13,7 +13,7 @@ class connect_db
             $this->servidor,
             $this->usuario,
             $this->password,
-            $this->db
+            $this->db,
         );
 
         return $connect;

@@ -3,6 +3,7 @@
 require_once('data.php');
 require_once('connect_db.php');
 require_once('upload_project.php');
+require_once('methods.php');
 
 ?>
 
@@ -163,7 +164,7 @@ require_once('upload_project.php');
         <?php
 
         $proyecto = new methods();
-        $sql = "SELECT name1, submitImg1, html, github, email2,linkedin from projectdb";
+        $sql = "SELECT name1,submitImg1, html,github,email2,linkedin from t_project";
         $data = $proyecto->mostrarDatos($sql);
 
         foreach ($data as $key) {
@@ -192,19 +193,30 @@ require_once('upload_project.php');
         <h2 class="mb-5">Recent Projects</h2>
       </div>
       <div class="row no-gutters">
-        <div class="col-lg-6">
-          <a class="portfolio-item js-scroll-trigger" href="#" data-toggle="modal" data-target="#projectModal">
-            <div class="caption">
-              <div class="caption-content">
-                <div class="h2">
-                  <h4><?php echo $_POST['name1'] ?></h4>
+        <?php
+
+        $proyecto = new methods();
+        $sql = "SELECT name1,submitImg1,description, html,github,email2,linkedin from t_project";
+        $data = $proyecto->mostrarDatos($sql);
+
+        foreach ($data as $key) {
+        ?>
+          <div class="col-lg-6">
+            <a class="portfolio-item js-scroll-trigger" href="#" data-toggle="modal" data-target="#projectModal">
+              <div class="caption">
+                <div class="caption-content">
+                  <div class="h2">
+                    <h4><?php echo $key['name1'] ?></h4>
+                  </div>
+                  <p class="mb-0"><?php echo $key['description'] ?></p>
                 </div>
-                <p class="mb-0"><?php $_POST['description'] ?></p>
               </div>
-            </div>
-            <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
-          </a>
-        </div>
+              <img class="img-fluid" src="<?php echo $key['submitImg1'] ?>" alt="">
+            </a>
+          </div>
+        <?php
+        }
+        ?>
         <div class="col-lg-6">
           <a class="portfolio-item" href="#!">
             <div class="caption">
@@ -378,16 +390,16 @@ require_once('upload_project.php');
           <div class="d-flex flex-column text-center">
             <form action="upload_project.php" method="post">
               <div class="form-group">
-                <input type="email" class="form-control" id="email2" placeholder="Tu dirección de mail">
+                <input type="email" class="form-control" id="email2" placeholder="Tu dirección de mail" name="email2">
               </div>
               <div class="form-group">
-                <input type="name" class="form-control" id="name1" placeholder="Tu nombre">
+                <input type="name" class="form-control" id="name1" placeholder="Tu nombre" name="name1">
               </div>
               <div class="form-group">
-                <input type="url" class="form-control" id="linkedin" placeholder="URL Likedin">
+                <input type="url" class="form-control" id="linkedin" placeholder="URL Likedin" name="linkedin">
               </div>
               <div class="form-group">
-                <input type="url" class="form-control" id="github" placeholder="URL gitHub">
+                <input type="url" class="form-control" id="github" placeholder="URL gitHub" name="github">
               </div>
               <div>
                 <textarea class="w-100" name="description" id="description" rows="5" placeholder="Contanos un poco sobre tu proyecto..."></textarea>
@@ -431,49 +443,60 @@ require_once('upload_project.php');
   </div>
 
   <!--Project modal-->
-  <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0 pb-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h4><?php echo $_POST['name1'] ?></h4>
+  <?php
+
+  $proyecto = new methods();
+  $sql = "SELECT name1,submitImg1,description, html,github,email2,linkedin from t_project";
+  $data = $proyecto->mostrarDatos($sql);
+
+  foreach ($data as $key) {
+  ?>
+    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0 pb-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
           </div>
-          <div class="d-flex flex-column text-center">
-            <div>
-              <p><?php echo $_POST['description'] ?></p>
+          <div class="modal-body">
+            <div class="form-title text-center">
+              <h4><?php echo $key['name1'] ?></h4>
+            </div>
+            <div class="d-flex flex-column text-center">
+              <div>
+                <p><?php echo $key['description'] ?></p>
+                <div class="mb-4">
+                  <a href="#" class="badge badge-primary">HTML</a>
+                  <a href="#" class="badge badge-primary">CSS</a>
+                  <a href="#" class="badge badge-primary">PHP</a>
+                </div>
+              </div>
               <div class="mb-4">
-                <a href="#" class="badge badge-primary">HTML</a>
-                <a href="#" class="badge badge-primary">CSS</a>
-                <a href="#" class="badge badge-primary">PHP</a>
+                <img class="img-fluid" src="<?php echo $key['submitImg1'] ?>" alt="">
+              </div>
+              <div class="text-center text-muted delimiter">¿Te gustó mi trabajo? Contactame
+              </div>
+              <div class="d-flex justify-content-center social-buttons">
+                <a type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="GitHub" href="<?php echo $key['github'] ?>" target="_blank">
+                  <i class="icon-social-github"></i>
+                </a>
+                <a type="button" class="badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Mail" href="mailto:<?php echo $key['gemail2'] ?>" target="_blank">
+                  <i class="fas fa-envelope"></i>
+                </a>
+                <a type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin" href="<?php echo $key['linkedin'] ?>" target="_blank">
+                  <i class="fab fa-linkedin"></i>
+                </a>
               </div>
             </div>
-            <div class="mb-4">
-              <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
-            </div>
-            <div class="text-center text-muted delimiter">¿Te gustó mi trabajo? Contactame
-            </div>
-            <div class="d-flex justify-content-center social-buttons">
-              <a type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="GitHub" href="<?php echo $_POST['github'] ?>" target="_blank">
-                <i class="icon-social-github"></i>
-              </a>
-              <a type="button" class="badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Mail" href="mailto:<?php echo $_POST['email2'] ?>" target="_blank">
-                <i class="fas fa-envelope"></i>
-              </a>
-              <a type="button" class=" badge-pill m-1 btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin" href="<?php echo $_POST['linkedin'] ?>" target="_blank">
-                <i class="fab fa-linkedin"></i>
-              </a>
-            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
-  </div>
+  <?php
+  }
+  ?>
   </div>
 
   <!-- /Modales -->
